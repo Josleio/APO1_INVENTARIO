@@ -8,12 +8,17 @@
 
 /*
  Algoritmo Informal:
- 1. Solicitar al usuario los datos de cada producto.
- 2. Leer y almacenar los datos ingresados.
- 3. Calcular los valores totales en inventario.
- 4. Verificar si el stock está por debajo del umbral mínimo.
- 5. Devolver un mensaje si el caso anterior es afirmativo.
- 6. Mostrar un listado con los productos y el estado del inventario.
+ 
+ 1. Dar bienvenida al usuario y mostrar opciones a y b.
+ 2. a es agregar producto, b es ver el listado.
+ 3. si el usuario escoge a se le pide los datos del producto
+ 4. Leer y almacenar los datos ingresados.
+ 5. Calcular los valores totales en inventario.
+ 6. Verificar si el stock está por debajo del umbral mínimo.
+ 7. Devolver un mensaje si el caso anterior es afirmativo.
+ 8. preguntar si quiere continuar y si es si volver al listado de opciones.
+ 9. si escoge b se muestra el listado de objetos.
+ 10. si no quiere continuar termina el programa.
 */
 
 // Pseudocódigo:
