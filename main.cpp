@@ -1,6 +1,7 @@
 /*
   Análisis de Requerimiento:
-  - El sistema debe permitir ingresar los datos cada producto (ID, nombre del producto, precio, cantidad en stock, umbral mínimo de stock).
+  - El sistema debe permitir ingresar varios productos
+  - los datos cada producto (ID, nombre del producto, precio, cantidad en stock, umbral mínimo de stock).
   - Debe calcular el valor total del inventario del producto.
   - Si la cantidad en stock es menor al umbral mínimo, debe mostrar un mensaje de reabastecimiento.
   - Y mostar un lsitado con los datos del producto y su estado en el inventario.
@@ -8,7 +9,6 @@
 
 /*
  Algoritmo Informal:
- 
  1. Dar bienvenida al usuario y mostrar opciones a y b.
  2. a es agregar producto, b es ver el listado.
  3. si el usuario escoge a se le pide los datos del producto
@@ -21,54 +21,56 @@
  10. si no quiere continuar termina el programa.
 */
 
-// Pseudocódigo:
-// INICIO
-//     DEFINIR inventario COMO LISTA VACÍA
-//     HACER
-//         ESCRIBIR "Bienvenido a su inventario de productos"
-//         ESCRIBIR "Seleccione una opción:"
-//         ESCRIBIR "a) Agregar un producto"
-//         ESCRIBIR "b) Ver inventario"
-//         LEER opcion
-//         SI opcion ES "a" ENTONCES
-//             DEFINIR producto, ID como CADENA
-//             DEFINIR stock, umbral, como ENTERO
-//             DEFINIR precio y valortotal como REAL
+/* Pseudocódigo:
+ INICIO
+     DEFINIR inventario COMO LISTA VACÍA
+     HACER
+        ESCRIBIR "Bienvenido a su inventario de productos"
+        ESCRIBIR "Seleccione una opción:"
+        ESCRIBIR "a) Agregar un producto"
+        ESCRIBIR "b) Ver inventario"
+         LEER opcion
+         SI opcion ES "a" ENTONCES
+             DEFINIR producto, ID como CADENA
+             DEFINIR stock, umbral, como ENTERO
+             DEFINIR precio y valortotal como REAL
 
-//             ESCRIBIR "Ingrese la siguiente informacion sobre el porducto"
-//             ESCRIBIR "ID del producto: "
-//             LEER id
-//             ESCRIBIR "Nombre: "
-//             LEER producto
-//             ESCRIBIR "Precio:"
-//             LEER precio
-//             ESCRIBIR "cantidad en stock:"
-//             LEER stock
-//             ESCRIBIR "umbral mínimo de stock:"
-//             LEER umbral
+             ESCRIBIR "Ingrese la siguiente informacion sobre el porducto"
+             ESCRIBIR "ID del producto: "
+            LEER id
+             ESCRIBIR "Nombre: "
+             LEER producto
+            ESCRIBIR "Precio:"
+             LEER precio
+             ESCRIBIR "cantidad en stock:"
+            LEER stock
+             ESCRIBIR "umbral mínimo de stock:"
+             LEER umbral
 
-//             valortotal ← precio * stock
+             valortotal ← precio * stock
 
-//             AGREGAR producto a inventario
-//             SI stock < umbral ENTONCES
-//                 ESCRIBIR "El umbral minimo supera la cantidad en stock, es necesario abastecer"
-//             FIN SI
-//         SI NO opcion ES "b" ENTONCES
-//             SI inventario ESTÁ VACÍA ENTONCES
-//                 ESCRIBIR "No hay productos en el inventario."
-//             SI NO
-//                 ESCRIBIR "Listado de productos:"
-//                 PARA CADA producto EN inventario HACER
-//                     ESCRIBIR id, producto, precio, stock, umbral, valortotal
-//                 FIN PARA
-//             FIN SI
-//         SI NO
-//             ESCRIBIR "Opción no válida. Intente de nuevo."
-//         FIN SI
-//         ESCRIBIR "¿Desea realizar otra acción? (s/n)"
-//         LEER opcion
-//     MIENTRAS opcion = "s"
-// FIN
+             AGREGAR producto a inventario
+             SI stock < umbral ENTONCES
+                 ESCRIBIR "El umbral minimo supera la cantidad en stock, es necesario abastecer"
+             FIN SI
+         SI NO opcion ES "b" ENTONCES
+             SI inventario ESTÁ VACÍA ENTONCES
+                ESCRIBIR "No hay productos en el inventario."
+             SI NO
+                 ESCRIBIR "Listado de productos:"
+                 PARA CADA producto EN inventario HACER
+                     ESCRIBIR id, producto, precio, stock, umbral, valortotal
+                 FIN PARA
+             FIN SI
+         SI NO
+             ESCRIBIR "Opción no válida. Intente de nuevo."
+         FIN SI
+         ESCRIBIR "¿Desea realizar otra acción? (s/n)"
+         LEER opcion
+     MIENTRAS opcion = "s"
+ FIN
+
+*/
 
 #include <iostream>
 #include <vector>
@@ -87,25 +89,29 @@ struct Producto {
 int main() {
     vector<Producto> inventario;
     char opcion;
+  
+// Dar bienvenida al usuario y mostrar opciones a y b.
+// a es agregar producto, b es ver el listado.
 
+  
     do {
         cout << "Bienvenido a su inventario de productos.\nQue desea hacer?: " << endl;
         cout << "a) Agregar un producto" << endl;
         cout << "b) Ver inventario" << endl;
         cout << "escriba la opcion: ";
         cin >> opcion;
-
+      
+        // si el usuario escoge a se le pide los datos del producto
 
         if (opcion == 'a' || opcion == 'A') {
             Producto prod;
 
-            //  1. Solicitar al usuario los datos de cada producto.
-            //  2. Leer y almacenar los datos ingresados.
+            //  Leer y almacenar los datos ingresados.
 
             cout << "Ingrese la informacion sobre el porducto.\n";
             cout << "ID del producto, letra y numero: ";
             cin >> prod.id;
-            cout << "nombre del producto: ";
+            cout << "Nombre del producto: ";
             cin.ignore();
             getline(cin, prod.nombre);
             cout << "precio, ingrese un numero: ";
