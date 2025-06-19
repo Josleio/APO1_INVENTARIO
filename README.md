@@ -20,12 +20,3 @@ Análisis de Requerimiento:
  8. preguntar si quiere continuar y si es si volver al listado de opciones.
  9. si escoge b se muestra el listado de objetos.
  10. si no quiere continuar termina el programa.
-
- Algoritmo Informal vector: 
-  1. pide el total de itmes
-  2. crear arrays de cada tipo para ese tamanio
-  3. itera sobre cada array pididendo la informacion de cada itema al usuario
-  4. calcula el umbral minimo y el valor total
-  5. crear alertas si el umbral minimo es mayor o igual al stock
-  6. muestra un listado de los items con su respectiva alertas
-  7. muuestre el valor total del inventario
