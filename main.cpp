@@ -1,25 +1,8 @@
-/*
-  Análisis de Requerimiento:
-  - El sistema debe permitir ingresar varios productos
-  - los datos cada producto (ID, nombre del producto, precio, cantidad en stock, umbral mínimo de stock).
-  - Debe calcular el valor total del inventario del producto.
-  - Si la cantidad en stock es menor al umbral mínimo, debe mostrar un mensaje de reabastecimiento.
-  - Y mostar un lsitado con los datos del producto y su estado en el inventario.
-*/
 
-/*
- Algoritmo Informal:
- 1. Dar bienvenida al usuario y mostrar opciones a y b.
- 2. a es agregar producto, b es ver el listado.
- 3. si el usuario escoge a se le pide los datos del producto
- 4. Leer y almacenar los datos ingresados.
- 5. Calcular los valores totales en inventario.
- 6. Verificar si el stock está por debajo del umbral mínimo.
- 7. Devolver un mensaje si el caso anterior es afirmativo.
- 8. preguntar si quiere continuar y si es si volver al listado de opciones.
- 9. si escoge b se muestra el listado de objetos.
- 10. si no quiere continuar termina el programa.
-*/
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
 
 /* Pseudocódigo:
  INICIO
@@ -72,10 +55,6 @@
 
 */
 
-#include <iostream>
-#include <vector>
-#include <string>
-using namespace std;
 
 struct Producto {
     string id;
@@ -87,6 +66,7 @@ struct Producto {
 };
 
 int main() {
+  
     vector<Producto> inventario;
     char opcion;
   
@@ -95,10 +75,10 @@ int main() {
 
   
     do {
-        cout << "Bienvenido a su inventario de productos.\nQue desea hacer?: " << endl;
-        cout << "a) Agregar un producto" << endl;
-        cout << "b) Ver inventario" << endl;
-        cout << "escriba la opcion: ";
+        cout << "Practica vector struct.\nEscriba una opcion: " << endl;
+        cout << "a, Agregar un producto" << endl;
+        cout << "b, Ver inventario" << endl;
+        cout << ": ";
         cin >> opcion;
       
         // si el usuario escoge a se le pide los datos del producto
@@ -109,12 +89,14 @@ int main() {
             //  Leer y almacenar los datos ingresados.
 
             cout << "Ingrese la informacion sobre el porducto.\n";
-            cout << "ID del producto, letra y numero: ";
+            cout << "ID: ";
             cin >> prod.id;
-            cout << "Nombre del producto: ";
+          //limpia el buffer
             cin.ignore();
+            cout << "Nombre: ";
+          // permite uso de strings con espacion
             getline(cin, prod.nombre);
-            cout << "precio, ingrese un numero: ";
+            cout << "Precio: ";
             cin >> prod.precio;
             cout << "cantidad en stock, numero entero: ";
             cin >> prod.cantidad;
@@ -127,10 +109,10 @@ int main() {
             inventario.push_back(prod);
 
             // 4. Verificar si el stock está por debajo del umbral mínimo.
-            // Devolver un mensaje si el caso anterior es afirmativo.
+            // dar una respectiva advertencia
 
-            if (prod.cantidad < prod.umbral) {
-                cout << "\nEl umbral minimo supera la cantidad en stock, es necesario abastecer.\n";
+            if (prod.cantidad <= prod.umbral) {
+                cout << "\nALERTA, es necesario abastecer.\n";
             }
         } else if (opcion == 'b' || opcion == 'B') {
             if (inventario.empty()) {
@@ -147,7 +129,7 @@ int main() {
             cout << "\nOpción no válida. Intente de nuevo.\n";
         }
 
-        cout << "\nDesea continuar? (s/n): ";
+        cout << "\nContinuar? (s/n): ";
         cin >> opcion;
     } while (opcion == 's' || opcion == 'S');
 
