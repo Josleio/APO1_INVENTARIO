@@ -1,148 +1,136 @@
+
 #include <iostream>
+#include <vector>
 #include <string>
 using namespace std;
 
-int main() {
-    cout << "Practica de vectores" << endl;
+/* Pseudocódigo:
+ INICIO
+     DEFINIR inventario COMO LISTA VACÍA
+     HACER
+        ESCRIBIR "Bienvenido a su inventario de productos"
+        ESCRIBIR "Seleccione una opción:"
+        ESCRIBIR "a) Agregar un producto"
+        ESCRIBIR "b) Ver inventario"
+         LEER opcion
+         SI opcion ES "a" ENTONCES
+             DEFINIR producto, ID como CADENA
+             DEFINIR stock, umbral, como ENTERO
+             DEFINIR precio y valortotal como REAL
 
-    /* En esta practica de vectores manejaremos el siguiente pseudocodigo:
+             ESCRIBIR "Ingrese la siguiente informacion sobre el porducto"
+             ESCRIBIR "ID del producto: "
+            LEER id
+             ESCRIBIR "Nombre: "
+             LEER producto
+            ESCRIBIR "Precio:"
+             LEER precio
+             ESCRIBIR "cantidad en stock:"
+            LEER stock
+             ESCRIBIR "umbral mínimo de stock:"
+             LEER umbral
 
+             valortotal ← precio * stock
 
-      INCIO
-
-       DEFINIR N COMO ENTERO;
-
-
-       ESCRIBIR "INGRESE EL NUMERO DE PRODUCTOS"
-       LEER N
-
-       DEFINIR LISTA_ID COMO ARREGLO DE "N" ELEMENTOS;
-       DEFINIR LISTA_NOMBRE COMO ARREGLO DE "N" ELEMENTOS;
-       DEFINIR LISTA_PRECIO COMO ARREGLO DE "N" ELEMENTOS;
-       DEFINIR LISTA_STOCK COMO ARREGLO DE "N" ELEMENTOS;
-       DEFINIR LISTA_UMBRAL COMO ARREGLO DE "N" ELEMENTOS;
-       DEFINIR i COMO ENTERO;
-       DEFINIR SITUACION COMO CADENA
-       DEFINIR TOTAL COMO ENTERO
-
-       PARA i DESDE 0 HASTA N - 1 HACER:
-         ESCRIBIR "INGRESE EL ID DEL PRODUCTO NUMERO i+1"
-         LEER LISTA_ID
-       FIN PARA
-
-    PARA i DESDE 0 HASTA N - 1 HACER:
-         ESCRIBIR "INGRESE EL NOMBRE DEL PRODUCTO NUMERO i+1"
-         LEER LISTA_NOMBRE
-       FIN PARA
-
-    PARA i DESDE 0 HASTA N - 1 HACER:
-         ESCRIBIR "INGRESE EL PRECIO UNITARIO DEL PRODUCTO NUMERO i+1"
-         LEER LISTA_PRECIO
-       FIN PARA
-
-    PARA i DESDE 0 HASTA N - 1 HACER:
-         ESCRIBIR "INGRESE EL STOCK DEL PRODUCTO NUMERO i+1"
-         LEER LISTA_STOCK
-         TOTAL = LISTA STOCK + TOTAL
-       FIN PARA
-
-    PARA i DESDE 0 HASTA N - 1 HACER:
-         ESCRIBIR "INGRESE EL UMBRAL DEL PRODUCTO NUMERO i+1"
-         LEER LISTA_UMBRAL
-          FIN PARA
-
-       ESCRIBIR "PRODUCTOS INGRESADOS"
-      PARA i DESDE 0 HASTA N - 1 HACER:
-
-        SI LISTA_UMBRAL[i] <= LISTA STOCK[i]
-          ESCRIBIR "LISTA_NOMBRE[i] necesita abastecer"
-
-      ESCRIBIR "PRODUCTO " i+1 /NUEVA LINEA
-      "ID:" LISTA_ID[i] /NUEVA LINEA
-      "NOMBRE:" LISTA_NOMBRE[i] /NUEVA LINEA
-      "PRECIO:" LISTA_PRECIO[i] /NUEVA LINEA
-      "STOCK:" LISTA_STOCK[i] /NUEVA LINEA
-      "UMBRAL:" LISTA_UMBRAL[i] /NUEVA LINEA
-
-      FIN PARA
+             AGREGAR producto a inventario
+             SI stock < umbral ENTONCES
+                 ESCRIBIR "El umbral minimo supera la cantidad en stock, es necesario abastecer"
+             FIN SI
+         SI NO opcion ES "b" ENTONCES
+             SI inventario ESTÁ VACÍA ENTONCES
+                ESCRIBIR "No hay productos en el inventario."
+             SI NO
+                 ESCRIBIR "Listado de productos:"
+                 PARA CADA producto EN inventario HACER
+                     ESCRIBIR id, producto, precio, stock, umbral, valortotal
+                 FIN PARA
+             FIN SI
+         SI NO
+             ESCRIBIR "Opción no válida. Intente de nuevo."
+         FIN SI
+         ESCRIBIR "¿Desea realizar otra acción? (s/n)"
+         LEER opcion
+     MIENTRAS opcion = "s"
+ FIN
 */
 
-  // declaramos la variable N
-  int N = 0;
 
-  // Pedimos el numero de productos, va a ser la longitud de cada array
-  cout << "Ingrese el numero de productos:" << endl;
-  cin >> N;
+struct Producto {
+    string id;
+    string nombre;
+    double precio{};
+    int cantidad{};
+    int umbral{};
+    double valorTotal{};
+};
 
-  // Declaramos los arrays
-  string producto_nombre[N];
-  string producto_id[N];
-  int producto_precio[N] = {0,0};
-  int producto_stock[N] = {0,0};
-  int producto_umbral[N] = {0,0};
+int main() {
+  
+    vector<Producto> inventario;
+    char opcion;
+  
+// Dar bienvenida al usuario y mostrar opciones a y b.
+// a es agregar producto, b es ver el listado.
 
-  // declaramos el contador, el total del inventario y su situacion
-  int i = 0;
-  string situacion = "buena";
-  int total = 0;
+  
+    do {
+        cout << "Practica vector struct.\nEscriba una opcion: " << endl;
+        cout << "a, Agregar un producto" << endl;
+        cout << "b, Ver inventario" << endl;
+        cout << ": ";
+        cin >> opcion;
+      
+        // si el usuario escoge a se le pide los datos del producto
 
+        if (opcion == 'a' || opcion == 'A') {
+            Producto prod;
 
-  // Ciclos for para leer los datos de cada array
-  for (i = 0; i < N; i++) {
-    cout << "Ingrese el ID del producto " << i+1 << ":" << endl;
-    cin >> producto_id[i];
-    cin.ignore();
-  }
+            //  Leer y almacenar los datos ingresados.
 
-  for (i = 0; i < N; i++) {
-    cout << "Ingrese el nombre del producto " << i+1 << ":" << endl;
-    cin >> producto_nombre[i];
-    cin.ignore();
-  }
+            cout << "Ingrese la informacion sobre el porducto.\n";
+            cout << "ID: ";
+            cin >> prod.id;
+          //limpia el buffer
+            cin.ignore();
+            cout << "Nombre: ";
+          // permite uso de strings con espacion
+            getline(cin, prod.nombre);
+            cout << "Precio: ";
+            cin >> prod.precio;
+            cout << "cantidad en stock, numero entero: ";
+            cin >> prod.cantidad;
+            cout << "umbral min de stock, numero entero: ";
+            cin >> prod.umbral;
 
-  for (i = 0; i < N; i++) {
-    cout << "Ingrese el precio del producto " << i+1 << ":" << endl;
-    cin >> producto_precio[i];
-  }
+            //  3. Calcular los valores totales en inventario.
 
-  // Uso este ciclo para calcular el total, de tal forma que en cuanto recibo el stock calcula el valor
-  for (i = 0; i < N; i++) {
-    cout << "Ingrese el stock del producto " << i+1 << ":" << endl;
-    cin >> producto_stock[i];
-    total += (producto_stock[i]*producto_precio[i]);
-  }
+            prod.valorTotal = prod.precio * prod.cantidad;
+            inventario.push_back(prod);
 
-  for (i = 0; i < N; i++) {
-    cout << "Ingrese el umbral del producto " << i+1 << ":" << endl;
-    cin >> producto_umbral[i];
-  }
+            // 4. Verificar si el stock está por debajo del umbral mínimo.
+            // dar una respectiva advertencia
 
-  //Mensaje que muestra el resumen del inventario
-  cout << "Productos ingresados: \n";
-  cout << endl;
+            if (prod.cantidad <= prod.umbral) {
+                cout << "\nALERTA, es necesario abastecer.\n";
+            }
+        } else if (opcion == 'b' || opcion == 'B') {
+            if (inventario.empty()) {
+                cout << "\nNo hay productos en el inventario.\n";
+            } else {
+                cout << "\nListado de productos:\n";
+                for (const auto &prod : inventario) {
+                    cout << "\nID: " << prod.id << "\tNombre: " << prod.nombre << endl;
+                    cout << "Precio unitario: " << prod.precio << "\tCantidad en stock: " << prod.cantidad << endl;
+                    cout << "Umbral minimo: " << prod.umbral << "\tValor total de producto: " << prod.valorTotal << endl;
+                }
+            }
+        } else {
+            cout << "\nOpción no válida. Intente de nuevo.\n";
+        }
 
-  //itero en cada array para mostrar todos los datos de cada producto
-  for (i = 0; i < N; i++) {
-
-    // condicional para determinar si el producto necesita abastecimiento
-    if (producto_umbral[i] >= producto_stock[i]) {
-      situacion = "abastecer";
-      cout << "// ALERTA: EL PRODUCTO NECESITA ABASTECER //" << endl;
-      cout << endl;
-    } else {situacion = "buena";}
-
-    cout << "Producto: " << i+1 << endl;
-    cout << "ID: " << producto_id[i] << endl;
-    cout << "Nombre: " << producto_nombre[i] << endl;
-    cout << "Precio: " << producto_precio[i] << endl;
-    cout << "Stock: " << producto_stock[i] << endl;
-    cout << "Umbral: " << producto_umbral[i] << endl;
-    cout << "Situacion: " << situacion << endl;
-    cout << endl;
-  }
-
-  //por ultimo el valor total del inventario
-  cout << "Valor total en inventario: " << total << endl;
+        cout << "\nContinuar? (s/n): ";
+        cin >> opcion;
+    } while (opcion == 's' || opcion == 'S');
 
     return 0;
 }
