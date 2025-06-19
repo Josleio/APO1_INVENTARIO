@@ -1,5 +1,6 @@
 # APO1_INVENTARIO
 Primer trabajo calificable de algoritmos y programacion, construir un inventario sencillo de productos con advertencia de umbral minimo, adjunto el analisis y el pseudocodigo:
+esta practica incluye vectores y struct (practica 1 y 2)
 
 Análisis de Requerimiento:
   - El sistema debe permitir ingresar los datos cada producto (ID, nombre del producto, precio, cantidad en stock, umbral mínimo de stock).
@@ -8,7 +9,7 @@ Análisis de Requerimiento:
   - Y mostar un lsitado con los datos del producto y su estado en el inventario.
 
 
- Algoritmo Informal: 
+ Algoritmo Informal struct: 
  1. Dar bienvenida al usuario y mostrar opciones a y b.
  2. a es agregar producto, b es ver el listado.
  3. si el usuario escoge a se le pide los datos del producto
@@ -20,64 +21,11 @@ Análisis de Requerimiento:
  9. si escoge b se muestra el listado de objetos.
  10. si no quiere continuar termina el programa.
 
-Pseudocodigo:
-
-INICIO
-
-DEFINIR inventario COMO LISTA VACÍA
-
-HACER
-
-ESCRIBIR "Bienvenido a su inventario de productos"
-ESCRIBIR "Seleccione una opción:"
-ESCRIBIR "a) Agregar un producto"
-ESCRIBIR "b) Ver inventario"
-LEER opcion
-
-SI opcion ES "a" ENTONCES
-
-DEFINIR producto, ID como CADENA
-DEFINIR stock, umbral como ENTERO
-DEFINIR precio y valortotal como REAL
-
-ESCRIBIR "Ingrese la siguiente información sobre el producto"
-ESCRIBIR "ID del producto: "
-LEER id
-ESCRIBIR "Nombre: "
-LEER producto
-ESCRIBIR "Precio:"
-LEER precio
-ESCRIBIR "Cantidad en stock:"
-LEER stock
-ESCRIBIR "Umbral mínimo de stock:"
-LEER umbral
-
-valortotal ← precio * stock
-
-AGREGAR producto a inventario
-
-SI stock < umbral ENTONCES
-ESCRIBIR "El umbral mínimo supera la cantidad en stock, es necesario abastecer"
-FIN SI
-
-SI NO opcion ES "b" ENTONCES
-
-SI inventario ESTÁ VACÍA ENTONCES
-ESCRIBIR "No hay productos en el inventario."
-SI NO
-ESCRIBIR "Listado de productos:"
-PARA CADA producto EN inventario HACER
-ESCRIBIR id, producto, precio, stock, umbral, valortotal
-FIN PARA
-FIN SI
-
-SI NO
-ESCRIBIR "Opción no válida. Intente de nuevo."
-FIN SI
-
-ESCRIBIR "¿Desea realizar otra acción? (s/n)"
-LEER opcion
-
-MIENTRAS opcion = "s"
-
-FIN
+ Algoritmo Informal vector: 
+  1. pide el total de itmes
+  2. crear arrays de cada tipo para ese tamanio
+  3. itera sobre cada array pididendo la informacion de cada itema al usuario
+  4. calcula el umbral minimo y el valor total
+  5. crear alertas si el umbral minimo es mayor o igual al stock
+  6. muestra un listado de los items con su respectiva alertas
+  7. muuestre el valor total del inventario
